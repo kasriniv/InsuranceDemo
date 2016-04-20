@@ -1,0 +1,12 @@
+package redhat.poc.healthcare;
+
+import java.lang.Number;
+
+rule "validationRule"
+	dialect "mvel"
+	ruleflow-group "data"
+	when
+		claim : Claim( type not in ( "C1001", "C1002", "C1003", "C1004" ) )
+	then
+		claim.setErrorType( "Data" );
+end
